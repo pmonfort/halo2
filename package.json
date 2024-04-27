@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "build": "bun bun.config.js"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Amir Sharif <budgeneration@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@prettier/plugin-ruby": "^4.0.4",
+    "prettier": "3.2.5"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.32.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "6"
+  }
+}

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "home#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :roboscout_queries, only: [:index, :create] do
+    member do
+      get :status
+    end
+  end
+
+  get '*path', to: 'home#index', via: :all
 end

@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a working repository for the Halo Science interview loop.
+To get started, you'll need to ensure you have all the prerequisites, including SQLite and Redis.
 
-Things you may want to cover:
+```bash
+bundle
+rake db:create
+rake db:migrate
+rails s
+```
 
-* Ruby version
+In another window (or using a Procfile manager) run bun for building.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+bun install
+bun run build --watch
+```
