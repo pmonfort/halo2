@@ -7,4 +7,18 @@ class RoboscoutQueriesController < ApplicationController
       RoboscoutQuery.new(status: 'complete', id: 1, query: 'test query')
     ]
   end
+
+  def create
+    # TODO: Complete this method.
+  end
+
+  def show
+    # TODO: Complete this method.
+    # @query = ...
+  end
+
+  def people
+    # TODO: Complete this method.
+    # @people = ...
+  end
 end

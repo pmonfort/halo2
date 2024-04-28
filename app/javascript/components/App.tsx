@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import RoboscoutQueryListIndex from "./RoboscoutQueryListIndex";
 import RoboscoutQueryListPeopleIndex from "./RoboscoutQueryListPeopleIndex";
 
@@ -11,6 +11,9 @@ const App = () => {
       <BrowserRouter>
         <div className="container">
           <header>
+            <Link to="/">
+              <p>Roboscout</p>
+            </Link>
             <p>Roboscout</p>
           </header>
           <div className="container">

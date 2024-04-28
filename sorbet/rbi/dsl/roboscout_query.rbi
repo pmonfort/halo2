@@ -311,19 +311,33 @@ class RoboscoutQuery
   end
 
   module GeneratedAssociationMethods
+    # This method is created by ActiveRecord on the `RoboscoutQuery` class because it declared `has_many :people, through: :roboscout_query_person`.
+    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
+    sig { returns(::Person::PrivateCollectionProxy) }
+    def people; end
+
+    sig { params(value: T::Enumerable[::Person]).void }
+    def people=(value); end
+
     sig { returns(T::Array[T.untyped]) }
-    def roboscout_query_result_ids; end
+    def person_ids; end
 
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def roboscout_query_result_ids=(ids); end
+    def person_ids=(ids); end
 
-    # This method is created by ActiveRecord on the `RoboscoutQuery` class because it declared `has_many :roboscout_query_results`.
+    # This method is created by ActiveRecord on the `RoboscoutQuery` class because it declared `has_many :roboscout_query_person`.
     # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::RoboscoutQueryResult::PrivateCollectionProxy) }
-    def roboscout_query_results; end
+    sig { returns(::RoboscoutQueryPerson::PrivateCollectionProxy) }
+    def roboscout_query_person; end
 
-    sig { params(value: T::Enumerable[::RoboscoutQueryResult]).void }
-    def roboscout_query_results=(value); end
+    sig { params(value: T::Enumerable[::RoboscoutQueryPerson]).void }
+    def roboscout_query_person=(value); end
+
+    sig { returns(T::Array[T.untyped]) }
+    def roboscout_query_person_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def roboscout_query_person_ids=(ids); end
   end
 
   module GeneratedAssociationRelationMethods

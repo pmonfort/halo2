@@ -16,3 +16,17 @@ In another window (or using a Procfile manager) run bun for building.
 bun install
 bun run build --watch
 ```
+
+In another window, you'll need to use and start Sidekiq.
+
+```bash
+bundle exec sidekiq
+```
+
+To reset Redis, you can use this command:
+
+```bash
+redis-cli flushall
+```
+
+Do not post your solution on GitHub. When you fork this, ensure that it is a PRIVATE fork.

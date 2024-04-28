@@ -46,14 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_27_195111) do
     t.index ["roboscout_query_id"], name: "index_roboscout_query_people_on_roboscout_query_id"
   end
 
-  create_table "roboscout_query_results", force: :cascade do |t|
-    t.integer "roboscout_query_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["roboscout_query_id"], name: "index_roboscout_query_results_on_roboscout_query_id"
-  end
-
   add_foreign_key "roboscout_query_people", "people"
   add_foreign_key "roboscout_query_people", "roboscout_queries"
-  add_foreign_key "roboscout_query_results", "roboscout_queries"
 end

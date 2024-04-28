@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id          :integer          not null, primary key
+#  openalex_id :string
+#  first_name  :string           not null
+#  last_name   :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 require "test_helper"
 
 class PersonTest < ActiveSupport::TestCase

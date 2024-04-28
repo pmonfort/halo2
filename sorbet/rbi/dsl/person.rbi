@@ -5,6 +5,7 @@
 # Please instead update this file by running `bin/tapioca dsl Person`.
 
 class Person
+  include GeneratedAssociationMethods
   include GeneratedAttributeMethods
   extend CommonRelationMethods
   extend GeneratedRelationMethods
@@ -257,6 +258,22 @@ class Person
 
     sig { returns(::Person) }
     def third_to_last!; end
+  end
+
+  module GeneratedAssociationMethods
+    sig { returns(T::Array[T.untyped]) }
+    def publication_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def publication_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `Person` class because it declared `has_many :publications`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::Publication::PrivateCollectionProxy) }
+    def publications; end
+
+    sig { params(value: T::Enumerable[::Publication]).void }
+    def publications=(value); end
   end
 
   module GeneratedAssociationRelationMethods

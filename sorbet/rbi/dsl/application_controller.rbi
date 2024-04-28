@@ -16,8 +16,6 @@ class ApplicationController
     include ::ActionText::TagHelper
     include ::ActionController::Base::HelperMethods
     include ::ApplicationHelper
-    include ::HomeHelper
-    include ::RoboscoutQueriesHelper
   end
 
   class HelperProxy < ::ActionView::Base

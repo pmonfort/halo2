@@ -16,8 +16,15 @@ const RoboscoutQueryListIndex = () => {
     return <div>Loading...</div>;
   }
 
+  /**
+   * TODO: Change the code below to support clicking into the people view for a particular RoboscoutQuery.
+   */
   return (
     <div>
+      <div>
+        <input type="text" size={30} />
+        <button>Submit</button>
+      </div>
       <table>
         <thead>
           <tr>
