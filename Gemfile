@@ -33,6 +33,7 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'dotenv', groups: [:development, :test]
 gem 'annotate'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'http'

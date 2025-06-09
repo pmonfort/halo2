@@ -1,0 +1,10 @@
+# Exclude tmp directory
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Common files to exclude
+.git/
+.DS_Store
+node_modules/
+*.log

@@ -1,0 +1,80 @@
+---
+name: halo
+
+x-app: &app
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+  volumes:
+    - .:/app
+    - bundle_cache:/usr/local/bundle
+    - node_modules_cache:/app/node_modules
+  environment:
+    - RAILS_ENV=development
+    - DATABASE_URL=sqlite3:db/development.sqlite3
+    - REDIS_URL=redis://redis:6379/0
+  tmpfs:
+    - /tmp:mode=1777
+  stdin_open: true
+  tty: true
+
+x-backend: &backend
+  <<: *app
+  depends_on:
+    bundler:
+      condition: service_completed_successfully
+
+services:
+  redis:
+    hostname: redis
+    image: redis
+    volumes:
+      - redis:/data
+    ports:
+      - "${COMPOSE_REDIS_PORT:-}:6379"
+    healthcheck:
+      test: redis-cli ping
+      interval: 30s
+      timeout: 10s
+      retries: 30
+
+  bundler:
+    <<: *app
+    command: >
+      bash -c "
+        echo 'Running bundler...';
+        bundle --version;
+        bash -c '[[ -v COMPOSE_DISABLE_BUNDLER ]] || bundle install';
+      "
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+
+  sidekiq:
+    <<: *backend
+    depends_on:
+      bundler:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    command: bundle exec sidekiq
+
+  web:
+    <<: *backend
+    command: >
+      sh -c "
+        rm -f tmp/pids/server.pid
+        bin/rails db:prepare
+        bin/rails server -b 0.0.0.0 -p 3000
+      "
+    ports:
+      - "${COMPOSE_RAILS_APP_PORT:-3000}:3000"
+
+  css:
+    <<: *backend
+    command: bun run build --watch
+
+volumes:
+  bundle_cache:
+  node_modules_cache:
+  redis:

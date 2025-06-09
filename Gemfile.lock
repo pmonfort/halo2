@@ -109,6 +109,7 @@ GEM
       reline (>= 0.3.8)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (3.1.8)
     drb (2.2.1)
     erubi (1.12.0)
     ffi (1.15.5)
@@ -165,6 +166,8 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.1)
+    nokogiri (1.16.3-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.16.3-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-darwin)
@@ -245,6 +248,7 @@ GEM
     sorbet (0.5.11361)
       sorbet-static (= 0.5.11361)
     sorbet-runtime (0.5.11361)
+    sorbet-static (0.5.11361-aarch64-linux)
     sorbet-static (0.5.11361-universal-darwin)
     sorbet-static-and-runtime (0.5.11361)
       sorbet (= 0.5.11361)
@@ -261,6 +265,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.7.3-aarch64-linux)
     sqlite3 (1.7.3-arm64-darwin)
     sqlite3 (1.7.3-x86_64-darwin)
     stringio (3.1.0)
@@ -309,6 +314,7 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-24
   x86_64-darwin-22
 
@@ -318,6 +324,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  dotenv
   http
   jbuilder
   jsbundling-rails (~> 1.3)

@@ -1,0 +1,27 @@
+ARG RUBY_VERSION=3.2.2
+FROM oven/bun:latest AS bun-source
+FROM ruby:$RUBY_VERSION-bookworm
+
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y \
+    npm \
+    git \
+    bash \
+    build-essential \
+    libyaml-dev \
+    pkg-config \
+    sqlite3 \
+    tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=bun-source /usr/local/bin/bun /usr/local/bin/
+
+WORKDIR /app
+
+ENV BUNDLE_PATH="/usr/local/bundle"
+
+COPY . .
+
+RUN bundle install
+RUN bun install
+
+RUN mkdir -p tmp/pids log storage && chmod -R 755 tmp log storage
