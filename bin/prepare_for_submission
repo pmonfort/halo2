@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Preps the file so it can be zipped easily.
+
+rm -rf node_modules/
+rm -rf tmp/cache/bootsnap/
+rm -rf tmp/assets/
+
+/usr/bin/zip -r roboscout-submission.zip .
+
+echo "Done zipping the file to roboscout-submission.zip"

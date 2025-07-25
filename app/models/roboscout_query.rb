@@ -16,6 +16,9 @@ class RoboscoutQuery < ApplicationRecord
   has_many :roboscout_query_person
   has_many :people, through: :roboscout_query_person
 
+  enum :status,
+       { in_progress: 'in_progress', complete: 'complete', failed: 'failed' }
+
   sig { returns(Integer) }
   def result_count
     people.count

@@ -7,6 +7,7 @@ To get started, you'll need to ensure you have all the prerequisites, including 
 bundle
 rake db:create
 rake db:migrate
+rails r db/seeds.rb
 rails s
 ```
 
@@ -14,7 +15,7 @@ In another window (or using a Procfile manager) run bun for building.
 
 ```bash
 bun install
-bun run build --watch
+bun bun.config.js --watch
 ```
 
 In another window, you'll need to use and start Sidekiq.
@@ -28,5 +29,3 @@ To reset Redis, you can use this command:
 ```bash
 redis-cli flushall
 ```
-
-Do not post your solution on GitHub. When you fork this, ensure that it is a PRIVATE fork.

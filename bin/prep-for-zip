@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-# Preps the file so it can be zipped easily.
-
-rm -rf node_modules/
-rm -rf tmp/cache/bootsnap/

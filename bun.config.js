@@ -27,6 +27,7 @@ const build = async (config) => {
   await build(config);
 
   if (process.argv.includes("--watch")) {
+    console.log("bun build started in watch mode...");
     fs.watch(
       path.join(process.cwd(), "app/javascript"),
       { recursive: true },

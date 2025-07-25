@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const RoboscoutQueryListPeopleIndex = () => {
   const { id } = useParams();
+  const [likedPeople, setLikedPeople] = useState<Set<number>>(new Set());
 
   const { data, isLoading } = useQuery({
     queryKey: ["roboscout_people_index", id],
@@ -16,9 +18,17 @@ const RoboscoutQueryListPeopleIndex = () => {
     return <div>Loading...</div>;
   }
 
-  /**
-   * TODO: Add the code below that will allow Liking or Unliking a candidate.
-   */
+  const toggleLike = (personId: number) => {
+    setLikedPeople((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(personId)) {
+        newSet.delete(personId);
+      } else {
+        newSet.add(personId);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div>
@@ -35,24 +45,22 @@ const RoboscoutQueryListPeopleIndex = () => {
         </thead>
         <tbody>
           {data.people.map((person: any) => {
+            const isLiked = likedPeople.has(person.id);
             return (
-              <tr>
+              <tr key={person.id}>
                 <td>{person.id}</td>
                 <td>{person.first_name}</td>
                 <td>{person.last_name}</td>
                 <td>{person.publication_count}</td>
-                <td>{person.relevance_score}</td>
+                <td>{person.relevance}</td>
                 <td>
-                  <button>Like</button>
+                  <button onClick={() => toggleLike(person.id)}>
+                    {isLiked ? "Unlike" : "Like"}
+                  </button>
                 </td>
               </tr>
             );
           })}
-          <tr>
-            <td>
-              <button>Like</button>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>

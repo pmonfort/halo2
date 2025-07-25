@@ -1,0 +1,43 @@
+erDiagram
+    Person {
+        int id PK
+        string openalex_id
+        string first_name
+        string last_name
+        datetime created_at
+        datetime updated_at
+    }
+
+    Publication {
+        int id PK
+        int person_id FK
+        text abstract
+        text title
+        date published_at
+        string openalex_id
+        datetime created_at
+        datetime updated_at
+    }
+
+    RoboscoutQuery {
+        int id PK
+        text query
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+
+    RoboscoutQueryPerson {
+        int id PK
+        int roboscout_query_id FK
+        int person_id FK
+        float relevance
+        datetime created_at
+        datetime updated_at
+    }
+
+    Person ||--o{ Publication : "has many"
+    Person ||--o{ RoboscoutQueryPerson : "has many"
+    RoboscoutQuery ||--o{ RoboscoutQueryPerson : "has many"
+    RoboscoutQueryPerson }o--|| Person : "belongs to"
+    RoboscoutQueryPerson }o--|| RoboscoutQuery : "belongs to"

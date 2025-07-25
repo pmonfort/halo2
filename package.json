@@ -1,9 +1,6 @@
 {
   "name": "app",
   "private": true,
-  "scripts": {
-    "build": "bun bun.config.js"
-  },
   "version": "1.0.0",
   "main": "index.js",
   "author": "Amir Sharif <budgeneration@gmail.com>",

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_195111) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_17_224218) do
   create_table "people", force: :cascade do |t|
     t.string "openalex_id"
     t.string "first_name", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_195111) do
     t.integer "person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "relevance"
     t.index ["person_id"], name: "index_roboscout_query_people_on_person_id"
     t.index ["roboscout_query_id"], name: "index_roboscout_query_people_on_roboscout_query_id"
   end

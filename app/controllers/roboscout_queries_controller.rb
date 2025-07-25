@@ -2,23 +2,27 @@
 
 class RoboscoutQueriesController < ApplicationController
   def index
-    # TODO: Get all the Roboscout queries from the database.
-    @roboscout_queries = [
-      RoboscoutQuery.new(status: 'complete', id: 1, query: 'test query')
-    ]
+    @roboscout_queries = RoboscoutQuery.order(created_at: :desc).all
   end
 
   def create
-    # TODO: Complete this method.
+    @query =
+      RoboscoutQuery.create!(query: params[:query], status: 'in_progress')
+    StartRoboscoutQueryJob.perform_async(T.must(@query.id))
+
+    render json: { query: @query }
   end
 
   def show
-    # TODO: Complete this method.
-    # @query = ...
+    @query = RoboscoutQuery.find(params[:id])
   end
 
   def people
-    # TODO: Complete this method.
-    # @people = ...
+    query = RoboscoutQuery.find(params[:id])
+
+    @roboscout_query_people =
+      query.roboscout_query_person.order(relevance: :desc).includes(:person)
+
+    render 'people'
   end
 end

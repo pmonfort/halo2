@@ -214,6 +214,7 @@ class RoboscoutQueryPerson
         load: T.untyped,
         error_on_ignore: T.untyped,
         order: Symbol,
+        use_ranges: T.untyped,
         block: T.proc.params(object: PrivateRelation).void
       ).void
     end
@@ -224,10 +225,11 @@ class RoboscoutQueryPerson
         finish: T.untyped,
         load: T.untyped,
         error_on_ignore: T.untyped,
-        order: Symbol
+        order: Symbol,
+        use_ranges: T.untyped
       ).returns(::ActiveRecord::Batches::BatchEnumerator)
     end
-    def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, order: :asc, &block); end
+    def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, order: :asc, use_ranges: nil, &block); end
 
     sig { params(record: T.untyped).returns(T::Boolean) }
     def include?(record); end
@@ -469,6 +471,9 @@ class RoboscoutQueryPerson
     def none(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def null_relation?(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def offset(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
@@ -491,6 +496,9 @@ class RoboscoutQueryPerson
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def references(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def regroup(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def reorder(*args, &blk); end
@@ -539,6 +547,9 @@ class RoboscoutQueryPerson
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelationWhereChain) }
     def where(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def without(*args, &blk); end
@@ -630,6 +641,51 @@ class RoboscoutQueryPerson
     def id_previously_was; end
 
     sig { returns(T.nilable(::Integer)) }
+    def id_value; end
+
+    sig { params(value: ::Integer).returns(::Integer) }
+    def id_value=(value); end
+
+    sig { returns(T::Boolean) }
+    def id_value?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def id_value_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def id_value_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def id_value_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def id_value_change; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def id_value_change_to_be_saved; end
+
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    def id_value_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def id_value_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def id_value_previous_change; end
+
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    def id_value_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def id_value_previously_was; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def id_value_was; end
+
+    sig { void }
+    def id_value_will_change!; end
+
+    sig { returns(T.nilable(::Integer)) }
     def id_was; end
 
     sig { void }
@@ -680,6 +736,51 @@ class RoboscoutQueryPerson
     sig { void }
     def person_id_will_change!; end
 
+    sig { returns(T.nilable(::Float)) }
+    def relevance; end
+
+    sig { params(value: T.nilable(::Float)).returns(T.nilable(::Float)) }
+    def relevance=(value); end
+
+    sig { returns(T::Boolean) }
+    def relevance?; end
+
+    sig { returns(T.nilable(::Float)) }
+    def relevance_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def relevance_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def relevance_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::Float), T.nilable(::Float)])) }
+    def relevance_change; end
+
+    sig { returns(T.nilable([T.nilable(::Float), T.nilable(::Float)])) }
+    def relevance_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::Float), to: T.nilable(::Float)).returns(T::Boolean) }
+    def relevance_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Float)) }
+    def relevance_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::Float), T.nilable(::Float)])) }
+    def relevance_previous_change; end
+
+    sig { params(from: T.nilable(::Float), to: T.nilable(::Float)).returns(T::Boolean) }
+    def relevance_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Float)) }
+    def relevance_previously_was; end
+
+    sig { returns(T.nilable(::Float)) }
+    def relevance_was; end
+
+    sig { void }
+    def relevance_will_change!; end
+
     sig { void }
     def restore_created_at!; end
 
@@ -687,7 +788,13 @@ class RoboscoutQueryPerson
     def restore_id!; end
 
     sig { void }
+    def restore_id_value!; end
+
+    sig { void }
     def restore_person_id!; end
+
+    sig { void }
+    def restore_relevance!; end
 
     sig { void }
     def restore_roboscout_query_id!; end
@@ -752,11 +859,23 @@ class RoboscoutQueryPerson
     sig { returns(T::Boolean) }
     def saved_change_to_id?; end
 
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def saved_change_to_id_value; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_id_value?; end
+
     sig { returns(T.nilable([::Integer, ::Integer])) }
     def saved_change_to_person_id; end
 
     sig { returns(T::Boolean) }
     def saved_change_to_person_id?; end
+
+    sig { returns(T.nilable([T.nilable(::Float), T.nilable(::Float)])) }
+    def saved_change_to_relevance; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_relevance?; end
 
     sig { returns(T.nilable([::Integer, ::Integer])) }
     def saved_change_to_roboscout_query_id; end
@@ -822,7 +941,13 @@ class RoboscoutQueryPerson
     def will_save_change_to_id?; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_id_value?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_person_id?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_relevance?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_roboscout_query_id?; end
@@ -902,6 +1027,9 @@ class RoboscoutQueryPerson
     def none(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def null_relation?(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def offset(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
@@ -924,6 +1052,9 @@ class RoboscoutQueryPerson
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def references(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def regroup(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def reorder(*args, &blk); end
@@ -954,6 +1085,9 @@ class RoboscoutQueryPerson
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelationWhereChain) }
     def where(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def without(*args, &blk); end
