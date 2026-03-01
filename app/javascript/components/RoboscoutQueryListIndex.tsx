@@ -16,6 +16,11 @@ const RoboscoutQueryListIndex = () => {
       const response = await fetch("/roboscout_queries");
       return response.json();
     },
+    refetchInterval: (query) => {
+      const d = query.state?.data as { roboscout_queries?: { status: string }[] } | undefined;
+      const inProgress = d?.roboscout_queries?.some((q) => q.status === "in_progress");
+      return inProgress ? 2000 : false;
+    },
   });
 
   const mutation = useMutation({
