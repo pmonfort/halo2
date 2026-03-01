@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiPost } from "../api/client";
 
 const queryKey = "roboscout_query_list";
 
@@ -19,11 +20,7 @@ const RoboscoutQueryListIndex = () => {
 
   const mutation = useMutation({
     mutationFn: async (payload: { query: string }) => {
-      const response = await fetch("/roboscout_queries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await apiPost("/roboscout_queries", payload);
       return response.json();
     },
     onSuccess: () => {
